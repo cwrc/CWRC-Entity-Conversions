@@ -1,0 +1,96 @@
+
+<project name="TransformToCWRC" default="build">
+    <taskdef name="MergeTitles" classname="org.ualberta.arc.mergecwrc.ant.MergeTitles" classpath="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
+    <taskdef name="ECCJIXSLExtractor" classname="org.ualberta.xsl.ECCJIXSLTitleExtractor" classpath="./ECCJIExtractor/dist/ECCJIExtractor.jar"/>
+    
+    <property name="buildDir" value="title_build"/>
+    <property name="orlandoStylesheet" value="./conversionFiles/title/OrlandoToMods.xslt"/>
+    <property name="canWWrStyleSheet" value="./conversionFiles/title/CanWWrToMods.xslt"/>
+    <property name="cewwStyleSheet" value="./conversionFiles/title/CEWWToMods.xslt"/>
+    <property name="mergeFilesSuffix" value=".mgxml"/>
+    <property name="classPathJar" value="../CWRC-merger/target/lib/saxon-9.1.0.8.jar"/>
+    <property name="transformerFactory" value="net.sf.saxon.TransformerFactoryImpl"/>
+
+    <fileset id="orlandoFiles" dir="../title_files">
+        <filename name="orlando_*.xml"/>
+    </fileset>
+    
+    <fileset id="canWWrFiles" dir="../title_files">
+        <filename name="canwwrfrom1950_production.xml"/>
+    </fileset>
+    
+    <fileset id="cewwFiles" dir="../title_files">
+        <filename name="ceww.xml"/>
+    </fileset>
+    
+    <fileset id="ECCJIXSLFiles" dir="../title_files">
+        <filename name="ECCJI.xlsx"/>
+    </fileset>
+    
+    <!--<target name="build" depends="TransformOrlandoFiles">
+        <echo message="Merging files."/>
+        
+        <MergeTitles>
+            <fileset dir="${buildDir}">
+                <filename name="*${mergeFilesSuffix}"/>
+            </fileset>
+        </MergeTitles>
+    </target>-->
+    
+    <target name="build" depends="TransformECCJIXSLFiles,TransformOrlandoFiles,TransformCanWWrFiles,TransformCEWWFiles">
+        <echo message="Merging files."/>
+        
+        <MergeTitles>
+            <fileset dir="${buildDir}">
+                <filename name="*${mergeFilesSuffix}"/>
+            </fileset>
+        </MergeTitles>
+    </target>
+    
+    <target name="TransformOrlandoFiles">
+        <xslt destdir="${buildDir}" style="${orlandoStylesheet}"
+        useImplicitFileset="false" extension="${mergeFilesSuffix}">
+            <fileset refid="orlandoFiles"/>
+            
+            <classpath location="${classPathJar}"/>
+            
+            <factory name="${transformerFactory}"/>
+        </xslt>
+    </target>
+    
+    <target name="TransformCanWWrFiles">
+        <xslt destdir="${buildDir}" style="${canWWrStyleSheet}"
+        useImplicitFileset="false" extension="${mergeFilesSuffix}">
+            <fileset refid="canWWrFiles"/>
+            
+            <classpath>
+                <pathelement location="../CWRC-merger/target/lib/serializer-2.7.1.jar"/>
+                <pathelement location="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
+                <pathelement location="../CWRC-merger/target/lib/xalan-2.7.1.jar"/>
+            </classpath>
+            
+            <factory name="org.apache.xalan.processor.TransformerFactoryImpl"/>
+        </xslt>
+    </target>
+    
+    <target name="TransformCEWWFiles">
+        <xslt destdir="${buildDir}" style="${cewwStyleSheet}"
+        useImplicitFileset="false" extension="${mergeFilesSuffix}">
+            <fileset refid="cewwFiles"/>
+            
+            <classpath>
+                <pathelement location="../CWRC-merger/target/lib/serializer-2.7.1.jar"/>
+                <pathelement location="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
+                <pathelement location="../CWRC-merger/target/lib/xalan-2.7.1.jar"/>
+            </classpath>
+            
+            <factory name="org.apache.xalan.processor.TransformerFactoryImpl"/>
+        </xslt>
+    </target>
+    
+    <target name="TransformECCJIXSLFiles">
+        <ECCJIXSLExtractor>
+            <fileset refid="ECCJIXSLFiles"/>
+        </ECCJIXSLExtractor>
+    </target>
+</project>

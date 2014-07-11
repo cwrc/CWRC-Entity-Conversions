@@ -1,0 +1,81 @@
+<project name="transformToCWRC" default="build">
+    <taskdef name="MergeTitles" classname="org.ualberta.arc.mergecwrc.ant.MergeOrganizations" classpath="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
+    <taskdef name="ECCJIXSLExtractor" classname="org.ualberta.xsl.ECCJIXSLOrganizationExtractor" classpath="./ECCJIExtractor/dist/ECCJIExtractor.jar"/>
+    
+    <property name="buildDir" value="organization_build"/>
+    <property name="orlandoStylesheet" value="./conversionFiles/organization/OrlandoToCWRC.xslt"/>
+    <property name="cewwStylesheet" value="./conversionFiles/organization/CEWWToCWRC.xslt"/>
+    <property name="canwwrStylesheet" value="./conversionFiles/organization/CanWWrToCWRC.xslt"/>
+    <property name="mergeFilesSuffix" value=".mgxml"/>
+    <property name="classPathJar" value="../CWRC-merger/target/lib/saxon-9.1.0.8.jar"/>
+    <property name="transformerFactory" value="net.sf.saxon.TransformerFactoryImpl"/>
+    
+    <fileset id="orlandoFiles" dir="organization_files">
+        <filename name="org_auth_*.xml"/>
+    </fileset>
+    
+    <fileset id="cewwFiles" dir="organization_files">
+        <filename name="ceww.xml"/>
+    </fileset>
+    
+    <fileset id="canwwrFiles" dir="organization_files">
+        <filename name="canwwr*_production.xml"/>
+    </fileset>
+    
+    <fileset id="ECCJIXSLFiles" dir="organization_files">
+        <filename name="ECCJI_journals.xlsx"/>
+    </fileset>
+    
+    <target name="build" depends="TransformECCJIXSLFiles,TransformOrlandoFiles,TransformCanWWrFiles,TransformCEWWFiles">
+        <echo message="Merging files."/>
+        
+        <MergeTitles>
+            <fileset dir="${buildDir}">
+                <filename name="*${mergeFilesSuffix}"/>
+            </fileset>
+        </MergeTitles>
+    </target>
+    
+    <target name="TransformOrlandoFiles">
+        <xslt destdir="${buildDir}" style="${orlandoStylesheet}"
+        useImplicitFileset="false" extension="${mergeFilesSuffix}">
+            <fileset refid="orlandoFiles"/>
+            
+            <classpath location="${classPathJar}"/>
+            <factory name="${transformerFactory}">
+                <attribute name="http://saxon.sf.net/feature/allow-external-functions" 
+                    value="true"/>
+                <attribute name="http://saxon.sf.net/feature/preEvaluateDocFunction" 
+                    value="false"/>
+                <attribute name="http://saxon.sf.net/feature/trace-external-functions" 
+                    value="true"/>
+            </factory>
+        </xslt>
+    </target>
+    
+    <target name="TransformCEWWFiles">
+        <xslt destdir="${buildDir}" style="${cewwStylesheet}"
+        useImplicitFileset="false" extension="${mergeFilesSuffix}">
+            <fileset refid="cewwFiles"/>
+            
+            <classpath location="${classPathJar}"/>
+            <factory name="${transformerFactory}"/>
+        </xslt>
+    </target>
+    
+    <target name="TransformCanWWrFiles">
+        <xslt destdir="${buildDir}" style="${canwwrStylesheet}"
+        useImplicitFileset="false" extension="${mergeFilesSuffix}">
+            <fileset refid="canwwrFiles"/>
+            
+            <classpath location="${classPathJar}"/>
+            <factory name="${transformerFactory}"/>
+        </xslt>
+    </target>
+    
+    <target name="TransformECCJIXSLFiles">
+        <ECCJIXSLExtractor>
+            <fileset refid="ECCJIXSLFiles"/>
+        </ECCJIXSLExtractor>
+    </target>
+</project>
