@@ -1,4 +1,3 @@
-
 <project name="TransformToCWRC" default="build">
     <taskdef name="MergeTitles" classname="org.ualberta.arc.mergecwrc.ant.MergeTitles" classpath="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
     <taskdef name="ECCJIXSLExtractor" classname="org.ualberta.xsl.ECCJIXSLTitleExtractor" classpath="./ECCJIExtractor/dist/ECCJIExtractor.jar"/>
@@ -37,7 +36,11 @@
         </MergeTitles>
     </target>-->
     
-    <target name="build" depends="TransformECCJIXSLFiles,TransformOrlandoFiles,TransformCanWWrFiles,TransformCEWWFiles">
+    <!-- Set entity input source files that will be converted and merged -->
+    <!-- <target name="build" depends="TransformECCJIXSLFiles,TransformOrlandoFiles,TransformCanWWrFiles,TransformCEWWFiles"> -->
+    <!-- <target name="build" depends="TransformECCJIXSLFiles,TransformCanWWrFiles,TransformCEWWFiles"> -->
+    <!-- <target name="build" depends="TransformOrlandoFiles"> -->
+    <target name="build" depends="TransformECCJIXSLFiles,TransformCanWWrFiles,TransformCEWWFiles">
         <echo message="Merging files."/>
         
         <MergeTitles>

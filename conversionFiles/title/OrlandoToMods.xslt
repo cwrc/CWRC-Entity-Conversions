@@ -65,7 +65,7 @@
                         </xsl:for-each>
                     </recordInfo>
                     <accessCondition type="use and reproduction">
-                       Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+                       Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
                    </accessCondition>
                 </mods>
             </xsl:for-each>

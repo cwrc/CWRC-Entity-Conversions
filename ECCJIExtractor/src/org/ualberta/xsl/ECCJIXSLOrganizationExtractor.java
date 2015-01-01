@@ -159,11 +159,17 @@ public class ECCJIXSLOrganizationExtractor {
     private static Element addRecordInfo(Document doc) {
         Element recordInfo = doc.createElement("recordInfo");
 
-        Element parent = doc.createElement("originInfo");
-        Element child = doc.createElement("projectId");
-        child.setTextContent("eccji");
+        Element parent = doc.createElement("orgTypes");
+        Element child = doc.createElement("orgType");
+        child.setTextContent("publishing");
         parent.appendChild(child);
         recordInfo.appendChild(parent);
+        
+        Element parent2 = doc.createElement("originInfo");
+        Element child2 = doc.createElement("projectId");
+        child2.setTextContent("eccji");
+        parent2.appendChild(child2);
+        recordInfo.appendChild(parent2);
         
         recordInfo.appendChild(createAccessCondition(doc));
 
@@ -181,34 +187,6 @@ public class ECCJIXSLOrganizationExtractor {
 
         return identity;
     }
-
-    private static Element addRelation(Document doc, String orgLoc, String type) {
-        Element relation = doc.createElement("relation");
-        relation.setAttribute("type", type);
-
-        Element placeRef = doc.createElement("placeRef");
-        Element place = doc.createElement("name");
-
-        place.setTextContent(orgLoc);
-        
-        placeRef.appendChild(place);
-        relation.appendChild(placeRef);
-
-
-        return relation;
-    }
-
-    private static Element addDescription(Document doc) {
-        Element description = doc.createElement("description");
-
-        Element parent = doc.createElement("orgTypes");
-        Element child = doc.createElement("orgType");
-        child.setTextContent("publishing");
-        parent.appendChild(child);
-        description.appendChild(parent);
-
-        return description;
-    }
     
     public static Element createAccessCondition(Document doc){
         Element parent = doc.createElement("accessCondition");
@@ -218,8 +196,8 @@ public class ECCJIXSLOrganizationExtractor {
         
         Element child = doc.createElement("a");
         child.setAttribute("rel", "license");
-        child.setAttribute("href", "http://creativecommons.org/licenses/by-nc/3.0/");
-        child.setTextContent("Creative Commons Attribution-NonCommercial 3.0 Unported License");
+        child.setAttribute("href", "http://creativecommons.org/licenses/by-nc/4.0/");
+        child.setTextContent("Creative Commons Attribution-NonCommercial 4.0 International License");
         parent.appendChild(child);
         
         parent.appendChild(doc.createTextNode("."));
@@ -231,13 +209,7 @@ public class ECCJIXSLOrganizationExtractor {
         Element organization = doc.createElement("organization");
         organization.appendChild(addRecordInfo(doc));
         organization.appendChild(addIdentity(doc, orgName));
-        organization.appendChild(addDescription(doc));
-        
-        Element relations = doc.createElement("relations");
-        if (orgLoc != null) {
-            relations.appendChild(addRelation(doc, orgLoc, "basedIn"));
-        }
-        organization.appendChild(relations);
+
         return organization;
     }
 

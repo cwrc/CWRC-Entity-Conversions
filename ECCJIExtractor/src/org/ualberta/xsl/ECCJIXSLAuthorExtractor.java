@@ -157,8 +157,8 @@ public class ECCJIXSLAuthorExtractor {
         
         Element child = doc.createElement("a");
         child.setAttribute("rel", "license");
-        child.setAttribute("href", "http://creativecommons.org/licenses/by-nc/3.0/");
-        child.setTextContent("Creative Commons Attribution-NonCommercial 3.0 Unported License");
+        child.setAttribute("href", "http://creativecommons.org/licenses/by-nc/4.0/");
+        child.setTextContent("Creative Commons Attribution-NonCommercial 4.0 International License");
         parent.appendChild(child);
         
         parent.appendChild(doc.createTextNode("."));

@@ -22,11 +22,14 @@
                     <xsl:when test="count(current-group()) ne 1">
                         <organization>
                             <recordInfo>
+                                <orgTypes>
+                                    <orgType>religious</orgType>
+                                </orgTypes>
                                 <originInfo>
                                     <projectId>ceww</projectId>
                                 </originInfo>
                                 <accessCondition type="use and reproduction">
-                                    Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+                                    Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
                                 </accessCondition>
                             </recordInfo>
                             <identity>
@@ -41,11 +44,6 @@
                                     </xsl:for-each>
                                 </variantForms>
                             </identity>
-                            <description>
-                                <orgTypes>
-                                    <orgType>religious</orgType>
-                                </orgTypes>
-                            </description>
                         </organization>
                     </xsl:when>
                     <xsl:otherwise>
@@ -61,11 +59,14 @@
                     <xsl:when test="count(current-group()) ne 1">
                         <organization>
                             <recordInfo>
+                                <orgTypes>
+                                    <orgType>academic</orgType>
+                                </orgTypes>
                                 <originInfo>
                                     <projectId>ceww</projectId>
                                 </originInfo>
                                 <accessCondition type="use and reproduction">
-                                    Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+                                    Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
                                 </accessCondition>
                             </recordInfo>
                             <identity>
@@ -80,11 +81,6 @@
                                     </xsl:for-each>
                                 </variantForms>
                             </identity>
-                            <description>
-                                <orgTypes>
-                                    <orgType>academic</orgType>
-                                </orgTypes>
-                            </description>
                         </organization>
                     </xsl:when>
                     <xsl:otherwise>
@@ -100,11 +96,14 @@
                     <xsl:when test="count(current-group()) ne 1">
                         <organization>
                             <recordInfo>
+                                <orgTypes>
+                                    <orgType>literary</orgType>
+                                </orgTypes>
                                 <originInfo>
                                     <projectId>ceww</projectId>
                                 </originInfo>
                                 <accessCondition type="use and reproduction">
-                                    Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+                                    Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
                                 </accessCondition>
                             </recordInfo>
                             <identity>
@@ -119,11 +118,6 @@
                                     </xsl:for-each>
                                 </variantForms>
                             </identity>
-                            <description>
-                                <orgTypes>
-                                    <orgType>literary</orgType>
-                                </orgTypes>
-                            </description>
                         </organization>
                     </xsl:when>
                     <xsl:otherwise>
@@ -161,11 +155,14 @@
             <xsl:if test="fn:string-length($trimName) > 0">
                 <organization>
                     <recordInfo>
+                        <orgTypes>
+                            <orgType>religious</orgType>
+                        </orgTypes>
                         <originInfo>
                             <projectId>ceww</projectId>
                         </originInfo>
                         <accessCondition type="use and reproduction">
-                            Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+                            Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
                         </accessCondition>
                     </recordInfo>
                     <identity>
@@ -191,11 +188,6 @@
                             </xsl:if>
                         </variantForms>
                     </identity>
-                    <description>
-                        <orgTypes>
-                            <orgType>religious</orgType>
-                        </orgTypes>
-                    </description>
                 </organization>
             </xsl:if>
         </xsl:for-each>
@@ -224,11 +216,14 @@
             <xsl:if test="fn:string-length($trimName) > 0">
                 <organization>
                     <recordInfo>
+                        <orgTypes>
+                            <orgType>academic</orgType>
+                        </orgTypes>
                         <originInfo>
                             <projectId>ceww</projectId>
                         </originInfo>
                         <accessCondition type="use and reproduction">
-                            Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+                            Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
                         </accessCondition>
                     </recordInfo>
                     <identity>
@@ -238,11 +233,6 @@
                             </namePart>
                         </preferredForm>
                     </identity>
-                    <description>
-                        <orgTypes>
-                            <orgType>academic</orgType>
-                        </orgTypes>
-                    </description>
                 </organization>
             </xsl:if>
         </xsl:for-each>
@@ -271,11 +261,14 @@
             <xsl:if test="fn:string-length($trimName) > 0">
                 <organization>
                     <recordInfo>
+                        <orgTypes>
+                            <orgType>literary</orgType>
+                        </orgTypes>
                         <originInfo>
                             <projectId>ceww</projectId>
                         </originInfo>
                         <accessCondition type="use and reproduction">
-                            Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+                            Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
                         </accessCondition>
                     </recordInfo>
                     <identity>
@@ -285,27 +278,7 @@
                             </namePart>
                         </preferredForm>
                     </identity>
-                    <description>
-                        <orgTypes>
-                            <orgType>literary</orgType>
-                        </orgTypes>
-                    </description>
-                    
-                    <xsl:if test="fn:matches($trimName, '.*\(.+\).*')">
-                        <xsl:variable name="place" select="fn:replace(fn:replace($trimName, '.*\(', ''), '\).*', '')"/>
-                        
-                        <xsl:if test="not(fn:matches(fn:lower-case($place), 'founder|organizaer|president|director|conver|mad club'))">
-                            <relations>
-                                <relation type="basedIn">
-                                    <placeRef>
-                                        <place>
-                                            <xsl:value-of select="$place"/>
-                                        </place>
-                                    </placeRef>
-                                </relation>
-                            </relations>
-                        </xsl:if>
-                    </xsl:if>
+
                 </organization>
             </xsl:if>
         </xsl:for-each>

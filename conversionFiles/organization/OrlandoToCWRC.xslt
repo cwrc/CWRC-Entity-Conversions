@@ -482,7 +482,7 @@
         <xsl:output-character string="&amp;sung;" character="&#x266A;"/> 
 
         <xsl:output-character string="&amp;excl;" character="!"/> 
-        <xsl:output-character string="&amp;iexcl;" character="&#xA1;"	  /> 
+        <xsl:output-character string="&amp;iexcl;" character="&#xA1;"     /> 
         <xsl:output-character string="&amp;quot;" character='"'        /> 
         <xsl:output-character string="&amp;apos;" character="'"/> 
         <xsl:output-character string="&amp;lpar;" character="("/> 
@@ -672,7 +672,7 @@
                                 <projectId>orlando</projectId>
                             </originInfo>
                             <accessCondition type="use and reproduction">
-                                Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/">Creative Commons Attribution-NonCommercial 3.0 Unported License</a>.
+                                Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
                             </accessCondition>
                         </recordInfo>
                         
@@ -688,10 +688,11 @@
                                 <namePart>
                                     <xsl:value-of select="fn:replace($standard_escaped, ',+', ',')"/>
                                 </namePart> 
-                                <displayLabel>
-                                    <xsl:value-of select="@DISPLAY"/>
-                                </displayLabel>
                             </preferredForm>
+                            
+                            <displayLabel>
+                                    <xsl:value-of select="@DISPLAY"/>
+                            </displayLabel>
                             
                             <variantForms>
                                 <xsl:if test="fn:matches($standard, '^.*,,+.*$')">
@@ -720,11 +721,6 @@
                                         <namePart>
                                             <xsl:value-of select="."/>
                                         </namePart>
-                                        <xsl:if test="fn:count(@PICKLIST) > 0">
-                                            <picklist>
-                                                <xsl:value-of select="@PICKLIST"/>
-                                            </picklist>
-                                        </xsl:if>
                                     </variant>
                                 </xsl:for-each>
                             </variantForms>
