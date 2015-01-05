@@ -64,12 +64,12 @@ public class ECCJIXSLAuthorExtractor {
             preferredForm.appendChild(namePart);
         }else{
             namePart.setTextContent(lastName);
-            namePart.setAttribute("partType", "surname");
+            namePart.setAttribute("partType", "family");
             preferredForm.appendChild(namePart);
             
             namePart = doc.createElement("namePart");
             namePart.setTextContent(firstName);
-            namePart.setAttribute("partType", "forename");
+            namePart.setAttribute("partType", "given");
             preferredForm.appendChild(namePart);
         }
         
@@ -170,6 +170,11 @@ public class ECCJIXSLAuthorExtractor {
         Element person = doc.createElement("person");
         person.appendChild(addRecordInfo(doc));
         person.appendChild(addIdentity(doc, firstName, lastName));
+        Element description = doc.createElement("description");
+        Element factuality = doc.createElement("factuality");
+        factuality.setTextContent("real");
+        description.appendChild(factuality);
+        person.appendChild(description);
         
         return person;
     }

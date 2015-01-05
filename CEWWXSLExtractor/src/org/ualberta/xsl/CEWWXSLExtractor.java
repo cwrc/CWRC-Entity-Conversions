@@ -58,21 +58,21 @@ public class CEWWXSLExtractor {
             root.appendChild(namePart);
             return false;
         } else {
-            Element surname = doc.createElement("namePart");
-            surname.setAttribute("partType", "surname");
-            surname.setTextContent(parts[0].trim());
-            root.appendChild(surname);
+            Element family = doc.createElement("namePart");
+            family.setAttribute("partType", "family");
+            family.setTextContent(parts[0].trim());
+            root.appendChild(family);
 
-            Element forename = doc.createElement("namePart");
-            forename.setAttribute("partType", "forename");
+            Element given = doc.createElement("namePart");
+            given.setAttribute("partType", "given");
 
             StringBuilder newName = new StringBuilder(parts[1].trim());
             for (int index = 2; index < parts.length; ++index) {
                 newName.append(", ");
                 newName.append(parts[index].trim());
             }
-            forename.setTextContent(newName.toString());
-            root.appendChild(forename);
+            given.setTextContent(newName.toString());
+            root.appendChild(given);
         }
 
         return true;
@@ -168,7 +168,7 @@ public class CEWWXSLExtractor {
             return false;
         }
         
-        Element dateRange = doc.createElement("dateRange");
+        // Element dateRange = doc.createElement("dateRange");
         String[] dates = date.split("-");
 
         boolean found = false;
@@ -183,21 +183,22 @@ public class CEWWXSLExtractor {
             found = true;
             String appendYear = "";
             if (index > 0 || currDate.startsWith("d.")) {
-                dateSection = doc.createElement("toDate");
+                dateSection = doc.createElement("dateSingle");
                 writeDate(doc, dateSection, currDate, "death", appendYear);
             } else {
-                dateSection = doc.createElement("fromDate");
+                dateSection = doc.createElement("dateSingle");
                 appendYear = writeDate(doc, dateSection, currDate, "birth", appendYear);
             }
 
-            dateRange.appendChild(dateSection);
+            // dateRange.appendChild(dateSection);
+            existDates.appendChild(dateSection);
         }
 
         if (!found) {
             return false;
         }
 
-        existDates.appendChild(dateRange);
+        // existDates.appendChild(dateRange);
 
         return true;
     }
@@ -300,6 +301,9 @@ public class CEWWXSLExtractor {
 
         Element description = doc.createElement("description");
         boolean result = writeDescription(doc, description, date, note);
+        Element factuality = doc.createElement("factuality");
+        factuality.setTextContent("real");
+        description.appendChild(factuality);
         person.appendChild(description);
 
         entity.appendChild(person);

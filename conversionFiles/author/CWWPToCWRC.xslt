@@ -1,14 +1,10 @@
 <?xml version="1.0"?>
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fn="http://www.w3.org/2005/xpath-functions"
-                xmlns:mads="http://www.loc.gov/mads/v2"
-                version="2.0"
-                exclude-result-prefixes="mads fn">                    
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:mads="http://www.loc.gov/mads/v2" version="2.0" exclude-result-prefixes="mads fn">
     <xsl:variable name="dateReg">\( ?\d+.? ?- ?\d+.? ?\)</xsl:variable>
-    
+
     <xsl:output method="xml" indent="yes" omit-xml-declaration="no"/>
-    
+
     <xsl:template match="/">
         <cwrc>
             <xsl:for-each select="mads:madsCollection/mads:mads">
@@ -35,10 +31,10 @@
                                                     <xsl:value-of select="fn:replace(mads:namePart[@type = 'given'], ' \( ?\d+ ?- ?\d+ ?\)', '')"/>
                                                 </xsl:variable>
                                                 <preferredForm>
-                                                    <namePart partType="surname">
+                                                    <namePart partType="family">
                                                         <xsl:value-of select="mads:namePart[@type = 'family']"/>
                                                     </namePart>
-                                                    <namePart partType="forename">
+                                                    <namePart partType="given">
                                                         <xsl:value-of select="$firstName"/>
                                                     </namePart>
                                                 </preferredForm>
@@ -57,7 +53,7 @@
                                     </xsl:when>
                                 </xsl:choose>
                             </xsl:for-each>
-                        
+
                             <variantForms>
                                 <xsl:for-each select="mads:variant/mads:name">
                                     <xsl:choose>
@@ -65,10 +61,10 @@
                                             <variant>
                                                 <xsl:choose>
                                                     <xsl:when test="(mads:namePart[@type = 'family']) and (mads:namePart[@type = 'given'])">
-                                                        <namePart partType="surname">
+                                                        <namePart partType="family">
                                                             <xsl:value-of select="mads:namePart[@type = 'family']"/>
                                                         </namePart>
-                                                        <namePart partType="forename">
+                                                        <namePart partType="given">
                                                             <xsl:value-of select="mads:namePart[@type = 'given']"/>
                                                         </namePart>
                                                     </xsl:when>
@@ -84,7 +80,7 @@
                                 </xsl:for-each>
                             </variantForms>
                         </identity>
-                    
+
                         <description>
                             <xsl:for-each select="mads:authority/mads:name">
                                 <xsl:choose>
@@ -102,49 +98,47 @@
                                                                 </dateSingle>
                                                             </xsl:when>
                                                             <xsl:otherwise>
-                                                                <dateRange>
-                                                                    <xsl:analyze-string select="." regex="\( ?\d+ ?-">
-                                                                        <xsl:matching-substring>
-                                                                            <fromDate>
-                                                                                <standardDate><xsl:value-of select="fn:replace(regex-group(0), '[^\d+]', '')"/>--</standardDate>
-                                                                                <dateType>birth</dateType>
-                                                                            </fromDate>
-                                                                        </xsl:matching-substring>
-                                                                    </xsl:analyze-string>
-                                                                    <xsl:analyze-string select="." regex="- ?\d+ ?\)">
-                                                                        <xsl:matching-substring>
-                                                                            <toDate>
-                                                                                <xsl:choose>
-                                                                                    <xsl:when test="fn:string-length(regex-group(0)) > 2">
-                                                                                        <standardDate><xsl:value-of select="fn:replace(regex-group(0), '[^\d+]', '')"/>--</standardDate>
-                                                                                    </xsl:when>
-                                                                                    <xsl:otherwise>
-                                                                                        <xsl:variable name="startVal">
-                                                                                            <xsl:analyze-string select="." regex="\( ?\d+ ?-">
-                                                                                                <xsl:matching-substring>
-                                                                                                    <xsl:value-of select="fn:substring(fn:replace(regex-group(0), '[^\d+]', ''), 1, 2)"/>
-                                                                                                </xsl:matching-substring>
-                                                                                            </xsl:analyze-string>
-                                                                                        </xsl:variable>
-                                                                                        <standardDate><xsl:value-of select="$startVal"/><xsl:value-of select="fn:replace(regex-group(0), '[^\d+]', '')"/>--</standardDate>
-                                                                                    </xsl:otherwise>
-                                                                                </xsl:choose>
-                                                                                <dateType>death</dateType>
-                                                                            </toDate>
-                                                                        </xsl:matching-substring>
-                                                                    </xsl:analyze-string>
-                                                                </dateRange>
+                                                                <xsl:analyze-string select="." regex="\( ?\d+ ?-">
+                                                                    <xsl:matching-substring>
+                                                                        <dateSingle>
+                                                                            <standardDate><xsl:value-of select="fn:replace(regex-group(0), '[^\d+]', '')"/>--</standardDate>
+                                                                            <dateType>birth</dateType>
+                                                                        </dateSingle>
+                                                                    </xsl:matching-substring>
+                                                                </xsl:analyze-string>
+                                                                <xsl:analyze-string select="." regex="- ?\d+ ?\)">
+                                                                    <xsl:matching-substring>
+                                                                        <dateSingle>
+                                                                            <xsl:choose>
+                                                                                <xsl:when test="fn:string-length(regex-group(0)) > 2">
+                                                                                    <standardDate><xsl:value-of select="fn:replace(regex-group(0), '[^\d+]', '')"/>--</standardDate>
+                                                                                </xsl:when>
+                                                                                <xsl:otherwise>
+                                                                                    <xsl:variable name="startVal">
+                                                                                        <xsl:analyze-string select="." regex="\( ?\d+ ?-">
+                                                                                            <xsl:matching-substring>
+                                                                                                <xsl:value-of select="fn:substring(fn:replace(regex-group(0), '[^\d+]', ''), 1, 2)"/>
+                                                                                            </xsl:matching-substring>
+                                                                                        </xsl:analyze-string>
+                                                                                    </xsl:variable>
+                                                                                    <standardDate><xsl:value-of select="$startVal"/><xsl:value-of select="fn:replace(regex-group(0), '[^\d+]', '')"/>--</standardDate>
+                                                                                </xsl:otherwise>
+                                                                            </xsl:choose>
+                                                                            <dateType>death</dateType>
+                                                                        </dateSingle>
+                                                                    </xsl:matching-substring>
+                                                                </xsl:analyze-string>
                                                             </xsl:otherwise>
                                                         </xsl:choose>
                                                     </existDates>
                                                 </xsl:matching-substring>
-                                                <xsl:non-matching-substring>
-                                                </xsl:non-matching-substring>
+                                                <xsl:non-matching-substring> </xsl:non-matching-substring>
                                             </xsl:analyze-string>
                                         </xsl:for-each>
                                     </xsl:when>
                                 </xsl:choose>
-                            </xsl:for-each>     
+                            </xsl:for-each>
+                            <factuality>real</factuality>
                         </description>
                     </person>
                 </entity>
