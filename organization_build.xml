@@ -1,5 +1,5 @@
 <project name="transformToCWRC" default="build">
-    <taskdef name="MergeTitles" classname="org.ualberta.arc.mergecwrc.ant.MergeOrganizations" classpath="./CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
+    <taskdef name="MergeTitles" classname="org.ualberta.arc.mergecwrc.ant.MergeOrganizations" classpath="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
     <taskdef name="ECCJIXSLExtractor" classname="org.ualberta.xsl.ECCJIXSLOrganizationExtractor" classpath="./ECCJIExtractor/dist/ECCJIExtractor.jar"/>
 	
     <property name="buildDir" value="organization_build"/>
@@ -7,22 +7,22 @@
     <property name="cewwStylesheet" value="./conversionFiles/organization/CEWWToCWRC.xslt"/>
     <property name="canwwrStylesheet" value="./conversionFiles/organization/CanWWrToCWRC.xslt"/>
     <property name="mergeFilesSuffix" value=".mgxml"/>
-    <property name="classPathJar" value="./CWRC-merger/target/lib/saxon-9.1.0.8.jar"/>
+    <property name="classPathJar" value="../CWRC-merger/target/lib/saxon-9.1.0.8.jar"/>
     <property name="transformerFactory" value="net.sf.saxon.TransformerFactoryImpl"/>
     
-    <fileset id="orlandoFiles" dir="organization_files">
+    <fileset id="orlandoFiles" dir="../organization_files">
         <filename name="org_auth_*.xml"/>
     </fileset>
     
-    <fileset id="cewwFiles" dir="organization_files">
+    <fileset id="cewwFiles" dir="../organization_files">
         <filename name="ceww.xml"/>
     </fileset>
     
-    <fileset id="canwwrFiles" dir="organization_files">
+    <fileset id="canwwrFiles" dir="../organization_files">
         <filename name="canwwr*_production.xml"/>
     </fileset>
     
-    <fileset id="ECCJIXSLFiles" dir="organization_files">
+    <fileset id="ECCJIXSLFiles" dir="../organization_files">
         <filename name="ECCJI_journals.xlsx"/>
     </fileset>
     

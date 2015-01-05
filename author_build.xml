@@ -3,7 +3,7 @@
     <taskdef name="ECCJIXSLExtractor" classname="org.ualberta.xsl.ECCJIXSLAuthorExtractor" classpath="./ECCJIExtractor/dist/ECCJIExtractor.jar"/>
     <taskdef name="MergeAuthors" classname="org.ualberta.arc.mergecwrc.ant.MergeAuthors" classpath="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
     
-    <property name="classPathJar" value="../MergeCWRC/target/lib/saxon-9.1.0.8.jar"/>
+    <property name="classPathJar" value="../CWRC-merger/target/lib/saxon-9.1.0.8.jar"/>
     <property name="transformerFactory" value="net.sf.saxon.TransformerFactoryImpl"/>
     <property name="orlandoStylesheet" value="./conversionFiles/author/OrlandoToCWRC.xslt"/>
     <property name="orlandoCatalogueStylesheet" value="./conversionFiles/author/OrlandoCatalogueToCWRC.xslt"/>
@@ -15,22 +15,22 @@
     <property name="mergedFile" value="mergedFile.xml"/>
     <property name="tempFile" value="outFile.xml"/>
     
-    <fileset id="orlandoFiles" dir="authority_files">
+    <fileset id="orlandoFiles" dir="../author_files">
         <filename name="orlando_name_auth_*.xml"/>
     </fileset>
     
-    <!--<fileset id="cwwpFiles" dir="authority_files" includes="cwwp_*.xml,CanWWR_*.xml"/>-->
-    <fileset id="cwwpFiles" dir="authority_files" includes="CanWWR_*.xml"/>
+    <!--<fileset id="cwwpFiles" dir="../author_files" includes="cwwp_*.xml,CanWWR_*.xml"/>-->
+    <fileset id="cwwpFiles" dir="../author_files" includes="CanWWR_*.xml"/>
     
-    <fileset id="orlandoCatalogueFiles" dir="authority_files">
+    <fileset id="orlandoCatalogueFiles" dir="../author_files">
         <filename name="orlando_catalogue_*.xml"/>
     </fileset>
     
-    <fileset id="CEWWXSLFiles" dir="authority_files">
+    <fileset id="CEWWXSLFiles" dir="../author_files">
         <filename name="CEWW_authors_dates_variants_notes_v02.xls"/>
     </fileset>
     
-    <fileset id="ECCJIXSLFiles" dir="authority_files">
+    <fileset id="ECCJIXSLFiles" dir="../author_files">
         <filename name="ECCJI.xlsx"/>
     </fileset>
     

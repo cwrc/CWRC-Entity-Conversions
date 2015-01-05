@@ -38,9 +38,9 @@
     
     <!-- Set entity input source files that will be converted and merged -->
     <!-- <target name="build" depends="TransformECCJIXSLFiles,TransformOrlandoFiles,TransformCanWWrFiles,TransformCEWWFiles"> -->
-    <!-- <target name="build" depends="TransformECCJIXSLFiles,TransformCanWWrFiles,TransformCEWWFiles"> -->
+    <!-- <target name="build" depends="TransformCanWWrFiles,TransformCEWWFiles"> -->
     <!-- <target name="build" depends="TransformOrlandoFiles"> -->
-    <target name="build" depends="TransformECCJIXSLFiles,TransformCanWWrFiles,TransformCEWWFiles">
+    <target name="build" depends="TransformCanWWrFiles,TransformCEWWFiles">
         <echo message="Merging files."/>
         
         <MergeTitles>
