@@ -120,7 +120,7 @@
                                                 <xsl:when test="name() = 'FORM'">usedForm</xsl:when>
                                                 <xsl:when test="name() = 'NICKNAME'">nickname</xsl:when>
                                                 <xsl:when test="name() = 'RELIGIOUSNAME'">religiousName</xsl:when>
-                                                <xsl:when test="name() = 'ROYALNAME'">royalName</xsl:when>
+                                                <xsl:when test="name() = 'ROYAL'">royalName</xsl:when>
                                                 <xsl:when test="name() = 'SELFCONSTRUCTED'">selfConstructedName</xsl:when>
                                                 <xsl:when test="name() = 'STYLED'">styledName</xsl:when>
                                                 <xsl:when test="name() = 'TITLED'">titledName</xsl:when>
