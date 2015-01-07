@@ -248,11 +248,12 @@ public class CEWWXSLExtractor {
         //access.setTextContent("public");
         //note.appendChild(access);
         
-        Element p = doc.createElement("p");
+        // Element p = doc.createElement("p");
 
-        p.setTextContent(notes);
+        // p.setTextContent(notes);
+        note.setTextContent(notes);
 
-        note.appendChild(p);
+        // note.appendChild(p);
         descriptiveNote.appendChild(note);
         description.appendChild(descriptiveNote);
 
@@ -359,11 +360,11 @@ public class CEWWXSLExtractor {
 
             book.close();
 
-            File output = new File("./build/" + file.getName().substring(0, file.getName().length() - 4) + ".mgxml");
+            File output = new File("./author_build/" + file.getName().substring(0, file.getName().length() - 4) + ".mgxml");
             System.out.println("Writing File: " + output.getName());
             transformDocument(doc, output);
 
-            output = new File("./build/" + file.getName().substring(0, file.getName().length() - 4) + "_possibleDuplicates.mgxml");
+            output = new File("./author_build/" + file.getName().substring(0, file.getName().length() - 4) + "_possibleDuplicates.mgxml");
             System.out.println("Writing File: " + output.getName());
             transformDocument(doc2, output);
         } catch (IOException ex) {

@@ -217,7 +217,7 @@ public class ECCJIXSLAuthorExtractor {
                 }
             }
             
-            File output = new File("./build/" + file.getName().substring(0, file.getName().length() - 5) + ".mgxml");
+            File output = new File("./author_build/" + file.getName().substring(0, file.getName().length() - 5) + ".mgxml");
             System.out.println("Writing File: " + output.getName());
             transformDocument(doc, output);
         } catch (IOException ex) {

@@ -1,7 +1,7 @@
 <project name="TransformToCWRC" default="build">
-    <taskdef name="CEWWXSLExtractor" classname="org.ualberta.xsl.CEWWXSLExtractor" classpath="./CEWWXSLExtractor/dist/CEWWXSLExtractor.jar"/>
-    <taskdef name="ECCJIXSLExtractor" classname="org.ualberta.xsl.ECCJIXSLAuthorExtractor" classpath="./ECCJIExtractor/dist/ECCJIExtractor.jar"/>
     <taskdef name="MergeAuthors" classname="org.ualberta.arc.mergecwrc.ant.MergeAuthors" classpath="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
+    <taskdef name="ECCJIXSLExtractor" classname="org.ualberta.xsl.ECCJIXSLAuthorExtractor" classpath="./ECCJIExtractor/dist/ECCJIExtractor.jar"/>
+    <taskdef name="CEWWXSLExtractor" classname="org.ualberta.xsl.CEWWXSLExtractor" classpath="./CEWWXSLExtractor/dist/CEWWXSLExtractor.jar"/>
     
     <property name="classPathJar" value="../CWRC-merger/target/lib/saxon-9.1.0.8.jar"/>
     <property name="transformerFactory" value="net.sf.saxon.TransformerFactoryImpl"/>
@@ -45,7 +45,7 @@
     
     <target name="validate">
         <echo message="Validating xml."/>
-        <schemavalidate noNamespaceURL="http://cwrc.ca/schema/entities" file="cwrc.xml"/>
+        <schemavalidate noNamespaceURL="http://cwrc.ca/schemas/entities.rng" file="cwrc.xml"/>
     </target>
 
     <target name="test">        
@@ -120,7 +120,7 @@
     </target>
     
     <target name="TransformCWWPFiles">
-        <xslt destdir="build" style="${cwwpStylesheet}"
+        <xslt destdir="${buildDir}" style="${cwwpStylesheet}"
         useImplicitFileset="false" extension="${mergeFilesSuffix}">
             <fileset refid="cwwpFiles"/>
             
@@ -130,7 +130,7 @@
     </target>
     
     <target name="TransformOrlandoFiles">
-        <xslt destdir="build" style="${orlandoStylesheet}"
+        <xslt destdir="${buildDir}" style="${orlandoStylesheet}"
         useImplicitFileset="false" extension="${mergeFilesSuffix}">
             <fileset refid="orlandoFiles"/>
             
@@ -140,7 +140,7 @@
     </target>
     
     <target name="TransformOrlandoCatalogueFiles">
-        <xslt destdir="build" style="${orlandoCatalogueStylesheet}"
+        <xslt destdir="${buildDir}" style="${orlandoCatalogueStylesheet}"
         useImplicitFileset="false" extension="${mergeFilesSuffix}">
             <fileset refid="orlandoCatalogueFiles"/>
             

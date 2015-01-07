@@ -1,5 +1,5 @@
 <project name="transformToCWRC" default="build">
-    <taskdef name="MergeTitles" classname="org.ualberta.arc.mergecwrc.ant.MergeOrganizations" classpath="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
+    <taskdef name="MergeOrganizations" classname="org.ualberta.arc.mergecwrc.ant.MergeOrganizations" classpath="../CWRC-merger/target/MergeCWRC-1.1-SNAPSHOT.jar"/>
     <taskdef name="ECCJIXSLExtractor" classname="org.ualberta.xsl.ECCJIXSLOrganizationExtractor" classpath="./ECCJIExtractor/dist/ECCJIExtractor.jar"/>
 	
     <property name="buildDir" value="organization_build"/>
@@ -33,11 +33,11 @@
 	<target name="build" depends="TransformCanWWrFiles,TransformCEWWFiles,TransformECCJIXSLFiles">
         <echo message="Merging files."/>
         
-        <MergeTitles>
+        <MergeOrganizations>
             <fileset dir="${buildDir}">
                 <filename name="*${mergeFilesSuffix}"/>
             </fileset>
-        </MergeTitles>
+        </MergeOrganizations>
     </target>
     
     <target name="TransformOrlandoFiles">
