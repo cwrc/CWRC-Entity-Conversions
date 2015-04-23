@@ -13,6 +13,12 @@
                         <recordInfo>
                             <originInfo>
                                 <projectId>canwwr</projectId>
+                                <recordCreationDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordCreationDate>
+                                <recordChangeDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordChangeDate>
                             </originInfo>
                             <personTypes>
                                 <personType>creator</personType>

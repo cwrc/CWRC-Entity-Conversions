@@ -14,6 +14,12 @@
                         <recordInfo>
                             <originInfo>
                                 <projectId>orlando</projectId>
+                                <recordCreationDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordCreationDate>
+                                <recordChangeDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordChangeDate>
                             </originInfo>
                             <xsl:if test="@PERSONTYPE">
                                 <personTypes>

@@ -11,6 +11,12 @@
                         <recordInfo>
                             <originInfo>
                                 <projectId>orlando</projectId>
+                                <recordCreationDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordCreationDate>
+                                <recordChangeDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordChangeDate>
                             </originInfo>
                             <accessCondition type="use and reproduction">
                             Use of this public-domain resource is governed by the <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.

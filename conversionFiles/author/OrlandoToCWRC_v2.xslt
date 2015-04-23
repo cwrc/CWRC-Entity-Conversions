@@ -2,7 +2,7 @@
 <!--
     * 2015-04-15
     * given the  Orlando authority list files concatented together along with the catalogue file in the following form
-    * altered to grab dates from the catalog file and add to the correspoinding name authority, and the name
+    * altered to grab dates from the catalog file and add to the corresponding name authority, and the name
     * authorities are converted to person entities
     * <AUTHORITYITEM>
     * = paste in catalogue file
@@ -24,6 +24,12 @@
                         <recordInfo>
                             <originInfo>
                                 <projectId>orlando</projectId>
+                                <recordCreationDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordCreationDate>
+                                <recordChangeDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordChangeDate>
                             </originInfo>
                             <xsl:if test="@PERSONTYPE">
                                 <personTypes>

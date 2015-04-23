@@ -76,6 +76,12 @@
                             <recordInfo>
                                 <recordContentSource>Canada's Early Women Writers</recordContentSource>
                                 <recordContentSource>ceww</recordContentSource>
+                                <recordCreationDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordCreationDate>
+                                <recordChangeDate encoding="w3cdtf">
+                                    <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
+                                </recordChangeDate>
                                 <recordIdentifier  source="ceww">
                                     <xsl:value-of select="$identiNum"/>
                                 </recordIdentifier>
