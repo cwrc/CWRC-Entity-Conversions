@@ -3,7 +3,10 @@ package org.ualberta.xsl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -169,6 +172,14 @@ public class ECCJIXSLOrganizationExtractor {
         Element child2 = doc.createElement("projectId");
         child2.setTextContent("eccji");
         parent2.appendChild(child2);
+        Element recordCreationDate = doc.createElement("recordCreationDate");
+        Element recordChangeDate = doc.createElement("recordChangeDate");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String dateInISO8601 = df.format(new Date());
+        recordCreationDate.setTextContent(dateInISO8601);
+        recordChangeDate.setTextContent(dateInISO8601);
+        parent2.appendChild(recordCreationDate);
+        parent2.appendChild(recordChangeDate);
         recordInfo.appendChild(parent2);
         
         recordInfo.appendChild(createAccessCondition(doc));

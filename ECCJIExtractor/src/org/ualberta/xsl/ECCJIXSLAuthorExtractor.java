@@ -7,7 +7,10 @@ package org.ualberta.xsl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
@@ -84,6 +87,14 @@ public class ECCJIXSLAuthorExtractor {
         Element child = doc.createElement("projectId");
         child.setTextContent("eccji");
         parent.appendChild(child);
+        Element recordCreationDate = doc.createElement("recordCreationDate");
+        Element recordChangeDate = doc.createElement("recordChangeDate");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String dateInISO8601 = df.format(new Date());
+        recordCreationDate.setTextContent(dateInISO8601);
+        recordChangeDate.setTextContent(dateInISO8601);
+        parent.appendChild(recordCreationDate);
+        parent.appendChild(recordChangeDate);
         recordInfo.appendChild(parent);
         
         parent = doc.createElement("personTypes");

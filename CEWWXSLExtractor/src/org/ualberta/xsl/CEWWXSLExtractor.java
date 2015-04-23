@@ -6,6 +6,9 @@ package org.ualberta.xsl;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.regex.Pattern;
 import javax.xml.parsers.DocumentBuilder;
@@ -162,7 +165,25 @@ public class CEWWXSLExtractor {
 
         return projectId;
     }
+    
+    private Element getRecordCreationDate(Document doc) {
+        Element recordCreationDate = doc.createElement("recordCreationDate");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String dateInISO8601 = df.format(new Date());
+        recordCreationDate.setTextContent(dateInISO8601);
 
+        return recordCreationDate;
+    }
+
+    private Element getRecordChangeDate(Document doc) {
+        Element recordChangeDate = doc.createElement("recordChangeDate");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String dateInISO8601 = df.format(new Date());
+        recordChangeDate.setTextContent(dateInISO8601);
+
+        return recordChangeDate;
+    }
+    
     private boolean extractDates(Document doc, Element existDates, String date) {
         if(date.isEmpty()){
             return false;
@@ -288,6 +309,8 @@ public class CEWWXSLExtractor {
         Element recordInfo = doc.createElement("recordInfo");
         Element originInfo = doc.createElement("originInfo");
         originInfo.appendChild(getProjectId(doc));
+        originInfo.appendChild(getRecordCreationDate(doc));
+        originInfo.appendChild(getRecordChangeDate(doc));
         recordInfo.appendChild(originInfo);
         Element personTypes = doc.createElement("personTypes");
         recordInfo.appendChild(personTypes);
