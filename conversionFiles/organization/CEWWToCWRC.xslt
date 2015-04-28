@@ -27,10 +27,10 @@
                                 </orgTypes>
                                 <originInfo>
                                     <projectId>ceww</projectId>
-                                    <recordCreationDate encoding="w3cdtf">
+                                    <recordCreationDate>
                                         <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
                                     </recordCreationDate>
-                                    <recordChangeDate encoding="w3cdtf">
+                                    <recordChangeDate>
                                         <xsl:value-of select="format-date(current-date(),'[Y0001]-[M01]-[D01]')"/>
                                     </recordChangeDate>
                                 </originInfo>
