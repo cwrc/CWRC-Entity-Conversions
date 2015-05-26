@@ -199,7 +199,7 @@
                                         <xsl:value-of select="fn:replace(regex-group(0), '.,, ', '')"/>
                                     </xsl:variable>
                                     <xsl:choose>
-                                        <xsl:when test="fn:matches($occupationVar, '^((the elder)|(the younger)|(fils)|(pere)|(father)|(mother)|(son)|(daughter)|(neé))$')"> </xsl:when>
+                                        <xsl:when test="fn:matches($occupationVar, '^((the elder)|(the younger)|(fils)|(pere)|(father)|(mother)|(son)|(daughter)|(neé)|(junior)|(senior))$')"> </xsl:when>
                                         <xsl:otherwise>
                                             <occupations>
                                                 <occupation>
