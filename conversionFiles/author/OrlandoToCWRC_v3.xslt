@@ -312,16 +312,20 @@
                                     <xsl:otherwise>
                                         <dateSingle>
                                             <standardDate>
-                                                <xsl:value-of select="$CATALOGUE_PERSON/@birth"/>
+                                                <!-- trim Orlando format date -->
+                                                <xsl:value-of select="fn:replace(fn:normalize-space($CATALOGUE_PERSON/@birth), '-{1,2}$','')"/>
                                             </standardDate>
                                             <dateType>birth</dateType>
                                         </dateSingle>
-                                        <dateSingle>
-                                            <standardDate>
-                                                <xsl:value-of select="$CATALOGUE_PERSON/@death"/>
-                                            </standardDate>
-                                            <dateType>death</dateType>
-                                        </dateSingle>
+                                        <xsl:if test="fn:normalize-space($CATALOGUE_PERSON/@death) != '9999--'">
+                                            <dateSingle>
+                                                <standardDate>
+                                                    <!-- trim Orlando format date -->
+                                                    <xsl:value-of select="fn:replace(fn:normalize-space($CATALOGUE_PERSON/@death), '-{1,2}$','')"/>
+                                                </standardDate>
+                                                <dateType>death</dateType>
+                                            </dateSingle>
+                                        </xsl:if>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </existDates>
