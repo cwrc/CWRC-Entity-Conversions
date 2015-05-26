@@ -4,9 +4,13 @@
     * given the  Orlando authority list files concatented together along with the catalogue file in the following form
     * altered to grab dates from the catalog file and add to the corresponding name authority, and the name
     * authorities are converted to person entities
+    * 
+    * make sure UTF-8 - even though Orlando authority lists may state another encoding 
+    *
+    * <?xml version="1.0"  encoding="UTF-8"?>
     * <AUTHORITYITEM>
-    * = paste in catalogue file
-    * = rest of authority items
+    * = paste in catalogue file (root element not within catalogue, not important - <person> element is key
+    * = rest of authority items ( files a-g, h-m, and n-z)
     * </AUTHORITYITEM
 -->
 
