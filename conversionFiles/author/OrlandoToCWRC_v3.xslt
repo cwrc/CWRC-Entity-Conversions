@@ -158,12 +158,14 @@
                                 <!--
                                     * add in the Orlando Authority list standard name as a means to link to the Orlando
                                     * source document <name> element standard_name attribute value
+                                    * added variantType value of "orlandoStandardName"
                                 -->
                                 <xsl:if test="@STANDARD">
                                     <variant>
                                         <namePart>
                                             <xsl:value-of select="@STANDARD"/>
                                         </namePart>
+                                        <variantType>orlandoStandardName</variantType>
                                         <authorizedBy>
                                             <projectId>orlando</projectId>
                                         </authorizedBy>

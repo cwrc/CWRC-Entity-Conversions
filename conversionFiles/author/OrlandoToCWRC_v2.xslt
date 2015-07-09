@@ -71,15 +71,19 @@
                                                 <xsl:when test="fn:starts-with($given, ',')">
                                                     <namePart>
                                                         <xsl:value-of select="$family"/>
-                                                        <xsl:text> </xsl:text>
-                                                        <xsl:value-of select="$given"/>
+                                                        <xsl:if test="$given!=''">
+                                                            <xsl:text> </xsl:text>
+                                                            <xsl:value-of select="$given"/>
+                                                        </xsl:if>
                                                     </namePart>
                                                 </xsl:when>
                                                 <xsl:when test="fn:contains($given, ',,')">
                                                     <namePart>
                                                         <xsl:value-of select="fn:replace($given, ',{2,2}', ',')"/>
-                                                        <xsl:text> </xsl:text>
-                                                        <xsl:value-of select="$family"/>
+                                                        <xsl:if test="$family!=''">
+                                                            <xsl:text> </xsl:text>
+                                                            <xsl:value-of select="$family"/>
+                                                        </xsl:if>
                                                     </namePart>
                                                 </xsl:when>
                                                 <xsl:otherwise>
@@ -222,7 +226,7 @@
                                                 <xsl:analyze-string select="regex-group(0)" regex="\d+/\d+.? ?-">
                                                     <xsl:matching-substring>
                                                         <dateSingle>
-                                                            <standardDate><xsl:value-of select="fn:replace(fn:replace(regex-group(0), '\d/', ''), '[^\d+]', '')"/>--</standardDate>
+                                                            <standardDate><xsl:value-of select="fn:replace(fn:replace(fn:replace(regex-group(0), '\d/', ''), '[^\d+]', ''), '\-{1,2}$', '')"/>--</standardDate>
                                                             <dateType>birth</dateType>
                                                         </dateSingle>
                                                     </xsl:matching-substring>
@@ -230,7 +234,7 @@
                                                 <xsl:analyze-string select="regex-group(0)" regex="- ?(by)? ?\d+/\d+.?">
                                                     <xsl:matching-substring>
                                                         <dateSingle>
-                                                            <standardDate><xsl:value-of select="fn:replace(fn:replace(regex-group(0), '\d/', ''), '[^\d+]', '')"/>--</standardDate>
+                                                            <standardDate><xsl:value-of select="fn:replace(fn:replace(fn:replace(regex-group(0), '\d/', ''), '[^\d+]', ''), '\-{1,2}$', '')"/>--</standardDate>
                                                             <dateType>birth</dateType>
                                                         </dateSingle>
                                                     </xsl:matching-substring>
@@ -247,7 +251,7 @@
                                                         <xsl:analyze-string select="regex-group(0)" regex="\d+(/\d+)? ?-">
                                                             <xsl:matching-substring>
                                                                 <dateSingle>
-                                                                    <standardDate><xsl:value-of select="fn:replace(regex-group(0), '(/\d)|[^\d+]', '')"/>--</standardDate>
+                                                                    <standardDate><xsl:value-of select="fn:replace(fn:replace(regex-group(0), '(/\d)|[^\d+]', ''), '\-{1,2}$', '')"/>--</standardDate>
                                                                     <dateType>birth</dateType>
                                                                 </dateSingle>
                                                             </xsl:matching-substring>
@@ -256,7 +260,7 @@
                                                         <xsl:analyze-string select="regex-group(0)" regex="- ?(by)? ?\d+(/\d+)?">
                                                             <xsl:matching-substring>
                                                                 <dateSingle>
-                                                                    <standardDate><xsl:value-of select="fn:replace(regex-group(0), '(/\d)|[^\d+]', '')"/>--</standardDate>
+                                                                    <standardDate><xsl:value-of select="fn:replace(fn:replace(regex-group(0), '(/\d)|[^\d+]', ''), '\-{1,2}$', '')"/>--</standardDate>
                                                                     <dateType>death</dateType>
                                                                 </dateSingle>
                                                             </xsl:matching-substring>
