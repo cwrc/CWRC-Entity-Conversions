@@ -701,11 +701,17 @@
                             </displayLabel>
                             
                             <variantForms>
-                                <xsl:if test="fn:matches($standard, '^.*,,+.*$')">
+                               <!--
+                                    * add in the Orlando Authority list standard name as a means to link to the Orlando
+                                    * source document <name> element standard_name attribute value
+                                    * added variantType value of "orlandoStandardName"
+                                -->
+                                <xsl:if test="@STANDARD">
                                     <variant>
                                         <namePart>
-                                            <xsl:value-of select="$standard"/>
+                                            <xsl:value-of select="@STANDARD"/>
                                         </namePart>
+                                        <variantType>orlandoStandardName</variantType>
                                         <authorizedBy>
                                             <projectId>orlando</projectId>
                                         </authorizedBy>
@@ -716,6 +722,7 @@
                                         <namePart>
                                             <xsl:value-of select="$standard_escaped"/>
                                         </namePart>
+                                        <variantType>Not sure what this block does, if ever triggered then act on the example found. Test via schema.</variantType>
                                         <authorizedBy>
                                             <projectId>orlando</projectId>
                                         </authorizedBy>
