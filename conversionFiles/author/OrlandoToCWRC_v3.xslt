@@ -8,10 +8,10 @@
     * make sure UTF-8 - even though Orlando authority lists may state another encoding 
     *
     * <?xml version="1.0"  encoding="UTF-8"?>
-    * <AUTHORITYITEM>
+    * <AUTHORITYLIST>
     * = paste in catalogue file (root element not within catalogue, not important - <person> element is key
     * = rest of authority items ( files a-g, h-m, and n-z)
-    * </AUTHORITYITEM
+    * </AUTHORITYLIST>
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fn="http://www.w3.org/2005/xpath-functions" version="2.0" exclude-result-prefixes="fn">
