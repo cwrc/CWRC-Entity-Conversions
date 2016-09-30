@@ -214,7 +214,9 @@ public class ECCJIXSLTitleExtractor {
         
         StringBuilder builder = new StringBuilder(note.substring(0, 1).toUpperCase());
         builder.append(note.substring(1));
-        builder.append(" [First line of poetry.]");
+        // MRB: 30-Sep-2016: The "[First line of poetry.]" string is already added on
+        // line 131 so the line below is not needed; commented it out
+        // builder.append(" [First line of poetry.]");
         parent.setTextContent(builder.toString());
         
         return parent;
